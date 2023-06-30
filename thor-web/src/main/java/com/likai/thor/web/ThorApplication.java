@@ -16,7 +16,6 @@ public class ThorApplication extends SpringBootServletInitializer {
         SpringApplication.run(ThorApplication.class, args);
     }
 
-
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
         return application.sources(ThorApplication.class);
