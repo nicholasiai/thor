@@ -5,7 +5,7 @@ import lombok.Data;
 import java.time.LocalDateTime;
 import java.util.Date;
 
-//@Data
+@Data
 public class UserInfoDo {
 
     /**
@@ -93,5 +93,9 @@ public class UserInfoDo {
         this.password = password;
         this.createDate = createDate;
         this.updateDate = updateDate;
+    }
+
+    public UserInfoDo(){
+
     }
 }

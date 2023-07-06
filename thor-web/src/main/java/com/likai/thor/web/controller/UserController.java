@@ -1,5 +1,8 @@
 package com.likai.thor.web.controller;
 
+import com.likai.thor.dao.domain.UserInfoDo;
+import com.likai.thor.service.bo.GatewayReqDto;
+import com.likai.thor.service.gateway.UserGateway;
 import com.likai.thor.service.user.UserManager;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
@@ -10,17 +13,26 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
+
 @RestController
 @RequestMapping("user")
 public class UserController {
 
     @Autowired
     private UserManager userManager;
-
+    @Resource
+    private UserGateway userGateway;
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String defaultLogin() {
-        return "首页";
+        GatewayReqDto reqDto = new GatewayReqDto();
+        reqDto.setUserId(124);
+        System.out.println("controller开始");
+        UserInfoDo userInfoDo = userGateway.gatUser(reqDto);
+        System.out.println("controller结束");
+        System.out.println(userInfoDo);
+        return userInfoDo.toString();
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
